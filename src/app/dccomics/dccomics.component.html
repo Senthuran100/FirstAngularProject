@@ -1,0 +1,62 @@
+<div class="col-4 offset-4">
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12">
+          <h1> Things-to-Do  </h1>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-xs-8">
+          <input type="text" class="form-control" name="task" placeholder="Things to do" #taskInput>
+      </div>
+
+      <div class="col-xs-4">
+          <button class="btn btn-info" (click)="addTask(taskInput)">Add</button>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-xs-12">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Things-to-Do list</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let task of tasks; let idx = index">
+                      <td *ngIf="task.is_canceled; else elseTd">
+                          <s>{{ idx + 1 }}. {{task.title}}</s>
+                      </td>
+                      <ng-template #elseTd>
+                          <td>{{ idx + 1 }}. {{task.title}}</td>
+                      </ng-template>
+
+                      <td>
+                          <button class="btn btn-primary btn-xs" (click)="editTask(idx)"> Edit </button>
+                      </td>
+
+                      <td>
+                          <button class="btn btn-warning btn-xs" (click)="cancelTask(idx)"> Cancel </button>
+                      </td>
+                      <td>
+                          <button class="btn btn-danger btn-xs" (click)="deleteTask(idx)"> Delete </button>
+                      </td>
+                  </tr>
+
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <div class="col-4 offset-8">
+                          <button class="btn btn-danger" (click)="clearToDo()">Clear The List</button>
+                      </div>
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
+  </div>
+</div>
+</div>
